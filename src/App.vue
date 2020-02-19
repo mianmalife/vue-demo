@@ -1,11 +1,17 @@
 <template>
   <div id="app">
+    <div id="nav">
+      <router-link to="/detail/1">Home</router-link>|
+      <router-link to="/about">About</router-link>
+      <router-view />
+    </div>
+
     <!-- <HelloWorld @child_data="receiveFn" msg="Welcome to Your Vue.js App" ref="hello" :hello="hello" />
     <BroHelloWorld>
       <template>匿名大兄弟</template><br />
       <template v-slot:content>具名插槽</template><br />
       <template v-slot:footer="{footer,grand}" >作用域插槽模板{{footer}},{{grand}}</template><br />
-    </BroHelloWorld> -->
+    </BroHelloWorld>-->
     <IndexForm />
   </div>
 </template>
@@ -13,18 +19,18 @@
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 // import BroHelloWorld from './components/BroHelloWorld.vue'
-import IndexForm from '@/components/form/index.vue'
+import IndexForm from "@/components/form/index.vue";
 export default {
   provide() {
     return {
-      'grand': '祖先信息'
-    }
+      grand: "祖先信息"
+    };
   },
-  name: 'App',
+  name: "App",
   data() {
     return {
-      hello: 'hi'
-    }
+      hello: "hi",
+    };
   },
   components: {
     // HelloWorld,
@@ -37,10 +43,10 @@ export default {
   },
   methods: {
     receiveFn(data) {
-      console.log(data)
+      console.log(data);
     }
-  },
-}
+  }
+};
 </script>
 
 <style>
@@ -50,6 +56,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
