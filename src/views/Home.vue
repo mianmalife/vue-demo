@@ -6,6 +6,8 @@
       <router-link :to="`/detail/${item.id}`">{{item.name}}</router-link>
     </div>
     <router-view />
+    <h2>{{$store.state.modCount.count}},<span>剩余数量{{$store.getters['modCount/remaining']}}</span></h2>
+    <button @click="add">vuex按钮</button>
   </div>
 </template>
 
@@ -25,6 +27,16 @@ export default {
   },
   components: {
     HelloWorld
-  }
+  },
+  methods: {
+    add() {
+      //this.$store.commit('modCount/increment')
+      this.$store.dispatch("modCount/asyncIncrement").then(result => {
+        console.log(result)
+      }).catch(() => {
+        alert('没货了')
+      })
+    }
+  },
 };
 </script>
